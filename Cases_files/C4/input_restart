@@ -1,0 +1,35 @@
+! Input File
+! Comments beginning with !  will be ignored
+! comp_flags -Dtimeshow -Deos=1 -Duserout -Dvisctype=1 -Dfixgp_eos -Dlinear_int  -Dtwodim  -Dconserv  -Dbcsimple  -Dbcwall_j1=2 -Dbcinflow_i1  -Dbczerograd_imax  -Dbczerograd_jmax  -Dfill_solid -Dnocrashpt -DNavSto -Dordervisc=2 -Dgitversion=1 -Dflux_skew -Dskew_damp -Dshock_capt=9 -Dread_user
+#NPOINT nx ny nz    
+80 40 1
+#LSIZES lx ly lz
+4 2 1.0
+#NPROCS
+8 8 1
+#EOSTAT (ideal,vdw,peng) perfect/nonperfect
+ideal perfect
+#GAMGAS (if gamma=true use specified value for gamma, if false gamma will be computed)
+true 1.4
+#NUGRID creategrid (if no it will try to read it somewhere)
+true
+#NSTEPS nsteps  time-step time-step  display(info) display(courant)
+9000 3.71e-08 100 100
+#MANMAP manual mapping of vars
+true
+#SPECIE Compounds (only if nonperfect gas)
+N2
+#VARSOL vars to solve
+nvrh nvux nvuy nvet
+#VARSTO vars to stores
+nvpr nvtp nvki
+#TSPLOT iplot gnuplot
+2000 true
+#RSTART 
+true 500
+#AMRPRM nlevs regrid frequen  sub-cycles
+8  50  true
+!
+!  compile with ibm amr
+!  dt = 1e-5 grid 128 x 128  cfl =0.29
+

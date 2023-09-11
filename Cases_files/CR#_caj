@@ -1,0 +1,35 @@
+#!/bin/sh
+#PBS -l walltime=placeholder_hours:00:00
+#PBS -l select=1:ncpus=64:mem=200gb
+#PBS -o OUTdbg
+#PBS -e ERRdbg
+module load mpi/intel-2019.6.166
+module load intel-suite/2020.2
+EXEDIR=${WORK}/CompReals/CR#/wrk
+
+
+
+# ------------ Move to folder ------------ 
+cd ${EXEDIR}
+
+# ------------ Run program first ------------ 
+cp input_init input
+mpiexec  ${EXEDIR}/compreal_amr0 > ${EXEDIR}/screen_init
+
+
+# ------------ Copy into restartfolder ------------ 
+cd ${EXEDIR}
+new_folder=$(ls -d "plt"/*/ 2>/dev/null | tail -n1)
+rm -r restartamr
+cp -r ${new_folder} restartamr
+
+# ------------ Move to outer folder ------------ 
+cd ${EXEDIR}
+
+# ------------ Run program third time ------------ 
+cp input_restart input
+mpiexec  ${EXEDIR}/compreal_amr1 > ${EXEDIR}/screen_restart
+
+
+
+

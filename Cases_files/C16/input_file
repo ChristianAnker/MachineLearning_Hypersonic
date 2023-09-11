@@ -1,0 +1,5 @@
+7.5 16662 231 400 752 0.1
+
+# ------------------------ Case 16, using beta = 28.0 kg/m^2 ------------------------ 
+#Ma: 7.51		Reynolds: 16662		Velocity: 2208 m/s		Pressure: 752 Pa		Temp: 231 K		Altitude: 33 km
+#Cells: 112		Levels: 8 	 	Min cell length: 0.28mm 	Re_h: 4.6		Timestep: 3.79e-08 s	Steps: 18000
